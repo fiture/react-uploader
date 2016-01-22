@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1= title
+    form(enctype="multipart/form-data" action="/upload" method="POST" id="J_uploadForm")
+        input(type="hidden" name="customField" value="xx")
+        input(type="file" name="file" id="J_uploadFile")
+        p
+            button(type="submit") Do Upload
+
+    script(src="/javascripts/upload.js")
