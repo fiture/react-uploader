@@ -3,8 +3,11 @@ extends layout
 block content
     h1= title
     form(enctype="multipart/form-data" action="/upload" method="POST" id="J_uploadForm")
-        input(type="hidden" name="customField" value="xx")
-        input(type="file" name="file" id="J_uploadFile")
+        input(type="file" name="file" multiple id="J_uploadFile")
+        p
+            span 已上传：
+            span(id="J_progress") 0
+            span %
         p
             button(type="submit") Do Upload
 
