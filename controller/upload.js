@@ -2,6 +2,7 @@ var fs = require('fs'),
     path = require('path'),
     multer  = require('multer'),
     config = require('./config'),
+    renderJSON = require('./utils').renderJSON,
     uploadMiddleware = multer({ dest: config.uploadPath }).any();
 
 function doUpload (req, res, next) {
@@ -36,24 +37,6 @@ function doUpload (req, res, next) {
             }
         });
     }
-}
-
-function renderJSON(isSuccess, data){
-    var status = isSuccess ? 'success' : 'error';
-
-    var obj = {
-        msg: data,
-        data: data,
-        status: status
-    }
-    
-    if ( isSuccess ) {
-        delete obj.msg;
-    } else {
-        delete obj.data;
-    }
-
-    return obj;
 }
 
 module.exports = {

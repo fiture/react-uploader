@@ -1,14 +1,18 @@
 extends layout
 
 block content
-    h1= title
-    form(enctype="multipart/form-data" action="/upload" method="POST" id="J_uploadForm")
-        input(type="file" name="file" multiple id="J_uploadFile")
-        p
-            span 已上传：
-            span(id="J_progress") 0
-            span %
-        p
-            button(type="submit") Do Upload
+    //-
+        form(enctype="multipart/form-data" action="/upload" method="POST" id="J_uploadForm")
+            input(type="file" name="file" multiple id="J_uploadFile")
+            p
+                span 已上传：
+                span(id="J_progress") 0
+                span %
+            p
+                button(type="submit") Do Upload
 
-    script(src="/javascripts/upload.js")
+    div(class="container")
+        h1= title
+        div(id="J_app")
+    //- script(src="/javascripts/upload.js")
+    script(src="/javascripts/dev-tools-with-flux/dist/bundle.js")
