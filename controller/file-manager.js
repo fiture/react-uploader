@@ -6,8 +6,8 @@ var fs = require('fs'),
 function getDir(req, res, next){
     var resData = {},
         resFiles = [],
-        isDirAvailable = checkDir(req.uploadDir),
-        uploadDir = isDirAvailable ? req.uploadDir : config.uploadPath;
+        isDirAvailable = checkDir(req.query.uploadDir),
+        uploadDir = isDirAvailable ? req.query.uploadDir : config.uploadPath;
 
     fs.readdir(uploadDir, function(err, files){
         if ( err ) {
@@ -47,7 +47,7 @@ function del(req, res, next){
     });
 }
 
-function develop(req, res, query){
+function develop(req, res, next){
     var postData = req.body,
         dp = require('./develop.js'),
         absPath = postData.absPath;
