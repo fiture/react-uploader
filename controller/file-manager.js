@@ -47,12 +47,51 @@ function del(req, res, next){
     });
 }
 
+function develop(req, res, query){
+    var postData = req.body,
+        dp = require('./develop.js'),
+        absPath = postData.absPath;
+
+
+    avalibleDir(absPath, function(bol){
+        if ( bol && aa(absPath) ) {
+            dp(absPath, function(error, stdout, stderr){
+                if ( error ) {
+                    res.json(renderJSON(0, error));
+                } else {
+                    res.json(renderJSON(1, {msg: stdout}));
+                }
+            });
+        } else {
+            res.json(renderJSON(0, '路径错误'));
+        }
+    });
+
+
+    function aa(dir){
+        return ( fs.statSync(dir).isFile() && path.extname(dir) == '.zip' && dir.indexOf('fe-') )
+    }
+}
+
 function checkDir (dir) {
     //如果请求查询的路径(queryDir)存在 并且 请求查询的路径是配置路径（configDir）的子目录
     return ( dir && dir.indexOf(config.uploadPath) == 0);
 }
 
+function avalibleDir(dir, callback){
+    var isDirAvailable = checkDir(dir);
+
+    fs.exists(dir, function(isExist){
+        if ( isExist && isDirAvailable ) {
+            callback && callback(true);
+        } else {            
+            callback && callback(false);
+        }
+    });
+}
+
 module.exports = {
     del: del,
-    getDir: getDir
+    getDir: getDir,
+    develop: develop
 }

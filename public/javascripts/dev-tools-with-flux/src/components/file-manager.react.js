@@ -103,7 +103,7 @@ var FileManager = React.createClass({
 
         this.dev(target, function(r){
             me.loadDirInfo(me.props.currentDir);
-            AppActions.addLog(r.msg);
+            AppActions.addLog(r.data.msg);
             AppActions.addLog('部署成功！');
         });
     },
@@ -170,7 +170,7 @@ var FileManager = React.createClass({
         for ( var i = 0; i<len; i++) {
             var file = files[i],
                 cls = file.isDir ? 'cat-dir' : 'cat-file',
-                staticPath = 'http://172.25.47.49' + currentDir.replace(this.oriDir, '');
+                staticPath = '' + currentDir.replace(this.oriDir, '');
 
 
             var bol = (

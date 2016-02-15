@@ -12,5 +12,6 @@ router.post('/del', fileManager.del);
 router.get('/get-dir', fileManager.getDir);
 
 router.post('/upload', uploader.uploadMiddleware, uploader.doUpload)
+router.post('/develop', fileManager.develop);
 
 module.exports = router;
