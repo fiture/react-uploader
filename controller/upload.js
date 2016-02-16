@@ -17,8 +17,11 @@ function doUpload (req, res, next) {
     rename(files[idx]);
 
     function rename(file){        
+
+        var des = req.body.uploadDir || file.destination;
+
         var filePath = file.path,
-            newFilePath = path.join(file.destination, file.originalname); 
+            newFilePath = path.join(des, file.originalname); 
 
         fs.rename(filePath, newFilePath, function(error){
             if ( error ) {

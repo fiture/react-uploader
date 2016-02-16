@@ -1,0 +1,7 @@
+{
+  "watch": [
+    "controller/",
+    "routes/",
+    "views/"
+  ]
+}
