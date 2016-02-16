@@ -5,7 +5,7 @@ var express = require('express'),
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('upload', { title: 'Upload' });
+    res.render('upload', { title: 'WYFE - Dev Tool' });
 });
 
 router.post('/del', fileManager.del);
